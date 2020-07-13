@@ -1,0 +1,13 @@
+Telegram UI Flutter is my 9th App in this 90 Days Challenge. In this App, basically created Telegram User Interface in Flutter using the widgets like ListTile, ListView and different builders like the ListView Builder Separator and also used the other widgets like CircleAvator, Text widgets for UI etc.
+
+Features need to be implemented further are as follows:
+1.     Exception Handling.
+2.    Widgets used like ListTile, ListView Builder, Center, Text and Circle Avatar Widgets
+
+If anyone wants to take a look and give some feedback about the app/the code, it would be really nice :). Pls star and fork the main repo, if you will find it interesting, I will create more advanced apps in the future. Thanks, r/FlutterDev for motivating me this journey and helping me to become a better developer.
+
+Source Code of this particular Project  can be found  with  proper documentation, coding, testing and deployment on GitHub using GitHub Actions: https://github.com/irahulcse/Telegram_Ui_Flutter
+
+Deployed Version of the Project:https://irahulcse.github.io/Telegram_Ui_Flutter/#/
+
+Main Repo with all my Flutter Apps till date including this one is: https://github.com/irahulcse/A-Complete-Guide-To-Flutter

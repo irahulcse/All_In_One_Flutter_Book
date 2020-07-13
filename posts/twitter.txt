@@ -1,0 +1,3 @@
+Dice Game App is my 8th App in 100 days Challenge learnt about Extended, Flat Button widget, also learnt about how to implement the mathematic logic behind Flutter code.  
+Sparkling heart
+#dart #Flutter #100DaysOfCode #Coding #apps #dartlang #Android #ios  #flutterdev
