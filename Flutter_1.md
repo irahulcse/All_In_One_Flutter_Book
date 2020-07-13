@@ -156,3 +156,340 @@ class DEMOWidget extends StatelessWidget {
 
 ```
 
+#### 3.2, Stateful StatefulWidget
+
+Continue to the inline theme, the following code is a simple implementation of stateful widgets. What you need to create and manage is mainly `State`, and build controls through State's `build` method. In State, you can dynamically change the data. After `setState`, the changed data will trigger the Widget to rebuild and refresh. In the code below, after two seconds, the text is displayed as *"This changes the value" *.
+
+
+The following code can also be seen, the main declaration cycle in State are:
+
+
+ * **initState**: Initialization, theoretically only initialized once, in the second chapter, we will talk about special cases.
+ * **didChangeDependencies**: Called after initState, you can get other State at this time.
+ * **dispose**: destroyed, it will only be called once.
+
+Did you see that Flutter is actually that simple! Your focus is only on: creating your `StatelessWidget` or `StatefulWidget`. **All you need is to stack your layout in `build`, then add the data to the Widget, and finally change the data through `setState` to achieve the screen change. **
+
+```
+import'dart:async';
+import'package:flutter/material.dart';
+
+class DemoStateWidget extends StatefulWidget {
+
+  final String text;
+
+  ////Pass the value through the constructor
+  DemoStateWidget(this.text);
+
+  ///Mainly responsible for creating state
+  @override
+  _DemoStateWidgetState createState() => _DemoStateWidgetState(text);
+}
+
+class _DemoStateWidgetState extends State<DemoStateWidget> {
+
+  String text;
+
+  _DemoStateWidgetState(this.text);
+  
+  @override
+  void initState() {
+    ///Initialization, this function is only called once in the life cycle
+    super.initState();
+    ///Time 1 second
+    new Future.delayed(const Duration(seconds: 1), () {
+      setState(() {
+        text = "This changes the value";
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    ///destroy
+    super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    /// Called when a dependency of this [State] object changes after initState.
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(text ?? "This is stateful DMEO"),
+    );
+  }
+}
+```
+
+&emsp;
+
+### 4, Flutter layout
+
+There are nearly 30 built-in [Layout Widgets] (https://flutterchina.club/widgets/layout) in Flutter, among which *Container, Padding, Center, Flex, Stack, Row, Column, ListView*, etc. are commonly used, below Briefly explain their characteristics and use.
+
+| Type | Features |
+| --------- | --------------------------------------- -|
+| Container | There is only one child widget. The default is full, including padding, margin, color, width and height, decoration and other configurations. |
+| Padding | There is only one child widget. Only used to set Padding, often used to nest children, set padding for children. |
+| Center | There is only one child widget. Only used for centering display, often used for nesting child, and setting the center for child. |
+| Stack | There can be multiple child widgets. The child widgets are stacked together. |
+| Column | There can be multiple child widgets. Vertical layout. |
+| Row | There can be multiple child widgets. Horizontal layout. |
+| Expanded | There is only one child widget. Fill in Column and Row. |
+| ListView | There can be multiple child widgets. Do it yourself. |
+
+* Container: The most commonly used default control, but in fact it is a template composed of multiple built-in controls, can only contain a `child`, support *padding, margin, color, width and height, decoration (general configuration border and shadow) Waiting for configuration*, in Flutter, not all controls have properties such as *width, height, padding, margin, color*, etc., so there will be Widgets such as Padding and Center.
+```
+    new Container(
+        ///4 weeks of maring
+        margin: EdgeInsets.all(10.0),
+        height: 120.0,
+        width: 500.0,
+        ///Transparent black mask
+        decoration: new BoxDecoration(
+            ///Radian is 4.0
+            borderRadius: BorderRadius.all(Radius.circular(4.0)),
+            ///If you set the color of decoration, you cannot set the color of Container.
+            color: Colors.black,
+            ///frame
+            border: new Border.all(color: Color(GSYColors.subTextColor), width: 0.3)),
+        child:new Text("666666"));
+```
+
+* Column and Row are absolutely necessary layouts, and horizontal and vertical layouts are also the most common scenes in daily life. As shown below, they often have these property configurations: the main axis direction is start or center, etc.; the secondary axis direction is start or center, etc.; mainAxisSize is the full size, or only the minimum size is displayed according to the child widget.
+
+```
+//Principal axis direction, Column's vertical direction, Row's horizontal direction
+mainAxisAlignment: MainAxisAlignment.start,
+//The default is the maximum full, or the minimum size is displayed according to the child
+mainAxisSize: MainAxisSize.max,
+//The direction of the secondary axis, the horizontal direction of Column, the vertical direction of Row My
+crossAxisAlignment: CrossAxisAlignment.center,
+```
+
+* Expanded represents the role of average filling in Column and Row. When two exist, the default is equal to full. At the same time, you can set the `flex` attribute to determine the ratio.
+
+```
+    new Column(
+     ///The main axis is centered, that is, centered vertically
+     mainAxisAlignment: MainAxisAlignment.center,
+     ///The size is displayed according to the minimum
+     mainAxisSize: MainAxisSize.min,
+     ///Horizontal also centered
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        ///flex defaults to 1
+        new Expanded(child: new Text("1111"), flex: 2,),
+        new Expanded(child: new Text("2222")),
+      ],
+    );
+```
+Next, let's write a more complicated control. First, we create a private method `_getBottomItem` and return an `Expanded Widget`, because later we need to fill the Widget returned by this method under Row on average.
+
+As noted in the code, the layout is mainly a centered Icon icon and text, with a padding of 5.0 in the middle:
+
+
+```
+  ///Return an Item centered with icon and text
+  _getBottomItem(IconData icon, String text) {
+    ///Row full of horizontal layout
+    return new Expanded(
+      flex: 1,
+      /// Center display
+      child: new Center(
+        ///Horizontal layout
+        child: new Row(
+          ///The main axis is centered, that is, horizontally centered
+          mainAxisAlignment: MainAxisAlignment.center,
+          ///The size is filled according to the maximum
+          mainAxisSize: MainAxisSize.max,
+          ///Vertical center
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            ///One icon, size 16.0, gray
+            new Icon(
+              icon,
+              size: 16.0,
+              color: Colors.grey,
+            ),
+            ///interval
+            new Padding(padding: new EdgeInsets.only(left:5.0)),
+            ///Display text
+            new Text(
+              text,
+              //Set the font style: gray color, font size 14.0
+              style: new TextStyle(color: Colors.grey, fontSize: 14.0),
+              //Exceed the omission for...display
+              overflow: TextOverflow.ellipsis,
+              //The longest line
+              maxLines: 1,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+```
+
+![item effect](http://img.cdn.guoshuyu.cn/20190604_Flutter-1/image1)
+
+
+Then we put the above method into the new layout, the following process and code:
+
+* The first is that `Container` contains `Card`, which is used to implement rounded corners and shadows quickly and easily.
+* Then the following includes `FlatButton` to realize the click, and the padding to realize the margin.
+* Next, two child widgets are included vertically through `Column`, one is `Container` and the other is `Row`.
+* The Widget returned by the `_getBottomItem` method is used in Row. The effect is as shown below.
+
+```
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      ///Card packaging
+      child: new Card(
+           /// Increase click effect
+          child: new FlatButton(
+              onPressed: (){print("clicked");},
+              child: new Padding(
+                padding: new EdgeInsets.only(left: 0.0, top: 10.0, right: 10.0, bottom: 10.0),
+                child: new Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ///Text description
+                    new Container(
+                        child: new Text(
+                          "This is a little description",
+                          style: TextStyle(color: Color(GSYColors.subTextColor),
+                            fontSize: 14.0,
+                          ),
+                          ///The longest three lines, more than ... show
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        margin: new EdgeInsets.only(top: 6.0, bottom: 2.0),
+                        alignment: Alignment.topLeft),
+                    new Padding(padding: EdgeInsets.all(10.0)),
+
+                    ///Three equally distributed horizontal icon text
+                    new Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        _getBottomItem(Icons.star, "1000"),
+                        _getBottomItem(Icons.link, "1000"),
+                        _getBottomItem(Icons.subject, "1000"),
+                      ],
+                    ),
+                  ],
+                ),
+              ))),
+    );
+  }
+
+```
+
+![Complete Item](http://img.cdn.guoshuyu.cn/20190604_Flutter-1/image2)
+
+In Flutter, your layout is often nested layer by layer. Of course, there are other more advanced layout methods, which will not be expanded here.
+
+
+### 5, Flutter page
+
+In addition to the layout widgets in Flutter, there are also interactive display widgets and full page rendering widgets, among which common ones are *MaterialApp, Scaffold, Appbar, Text, Image, FlatButton*, etc. The following briefly introduces these Wdigets and completes a page.
+
+| Type | Features |
+| ----------- | ------------------------------------- --- |
+| MaterialApp | Generally used as the homepage entrance of the top level of the APP, configurable themes, multiple languages, routing, etc. |
+| Scaffold | General user page hosting Widget, including appbar, snackbar, drawer and other material design settings. |
+Appbar | Appbar is generally used for Scaffold, with a title, secondary page return button, etc. Of course, more than that, tabbar, etc. will also need it. |
+| Text | Display text, almost all will be used, mainly to set the font style by setting TextStyle style. |
+| RichText | Rich text, by setting `TextSpan`, you can stitch rich text scenes. |
+| TextField | Text input box: `new TextField(controller: //text controller, obscureText: "hinttext");`|
+Image | Image loading: `new FadeInImage.assetNetwork( placeholder: "Preview", fit: BoxFit.fitWidth, image: "url");`|
+| FlatButton | Button click: `new FlatButton(onPressed: () {},child: new Container());`|
+
+Then try inserting the theme again to achieve a simple and complete page. Such as the following code:
+
+
+* First we create a StatefulWidget: `DemoPage`.
+* Then in `_DemoPageState`, a `Scaffold` was created through `build`.
+* Scaffold contains an `AppBar` and a `ListView`.
+* AppBar is similar to the title area, where `title` is set as Text Widget.
+* The body is `ListView`, which returns 20 DemoItem Widgets that we created before.
+
+```
+import'package:flutter/material.dart';
+import'package:gsy_github_app_flutter/test/DemoItem.dart';
+
+class DemoPage extends StatefulWidget {
+  @override
+  _DemoPageState createState() => _DemoPageState();
+}
+
+class _DemoPageState extends State<DemoPage> {
+  @override
+  Widget build(BuildContext context) {
+    ///Start of a page
+    ///If it is a new page, it will bring back button
+    return new Scaffold(
+      ///Background style
+      backgroundColor: Colors.blue,
+      ///Title bar, of course, not just the title bar
+      appBar: new AppBar(
+        ///This title is a Widget
+        title: new Text("Title"),
+      ),
+      ///Official page start
+      ///One ListView, 20 items
+      body: new ListView.builder(
+        itemBuilder: (context, index) {
+          return new DemoItem();
+        },
+        itemCount: 20,
+      ),
+    );
+  }
+}
+```
+
+Finally, we create a StatelessWidget as the entry file, implement a `MaterialApp`, set the above `DemoPage` as the home page, and execute the page through the `main` entry.
+
+```
+import'package:flutter/material.dart';
+import'package:gsy_github_app_flutter/test/DemoPage.dart';
+
+void main() {
+  runApp(new DemoApp());
+}
+
+class DemoApp extends StatelessWidget {
+  DemoApp({Key key}): super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(home: DemoPage());
+  }
+}
+
+```
+
+![Final display](http://img.cdn.guoshuyu.cn/20190604_Flutter-1/image3)
+
+
+Well, the first part is finally over. The main explanations here are some simple basic things, suitable for Amway to enter the pit, and more actual combat will be waiting for you to start
+
+### Resource recommendation
+
+* Github: [https://github.com/CarGuo/](https://github.com/CarGuo)
+* **Open source Flutter complete project: https://github.com/CarGuo/GSYGithubAppFlutter**
+* **Open source Flutter multi-case learning project: https://github.com/CarGuo/GSYFlutterDemo**
+* **Open source Fluttre combat e-book project: https://github.com/CarGuo/GSYFlutterBook**
+
+##### Complete open source project recommendation:
+
+* [Related article: GSYGithubAppFlutter] (https://github.com/CarGuo/GSYGithubAppFlutter)
+
+
