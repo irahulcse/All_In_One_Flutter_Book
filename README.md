@@ -9,7 +9,7 @@
 1. [Basics of Dart Language and Flutter](https://github.com/irahulcse/All_In_One_Flutter_Book/blob/master/Flutter_1.md)
 2. [Flutter Related Articles and Summary](https://github.com/irahulcse/All_In_One_Flutter_Book/blob/master/Flutter_2.md) 
 3. [Flutter Packing and Flutter Development Process:](https://github.com/irahulcse/All_In_One_Flutter_Book/blob/master/Flutter_3.md)
-4. [Principles of Flutter and it's](https://github.com/irahulcse/All_In_One_Flutter_Book/blob/master/Flutter_5.md)
+4. [Important Principles of Flutter and Mobile App Development Cycle](https://github.com/irahulcse/All_In_One_Flutter_Book/blob/master/Flutter_5.md)
 
 
 

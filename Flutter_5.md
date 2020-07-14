@@ -2,9 +2,9 @@ As the fifth in a series of articles, this article mainly explores some interest
 
 ## Article summary address:
 
-> [Flutter complete combat actual combat series article column] (https://juejin.im/collection/5db25bcff265da06a19a304e)
+<!-- > [Flutter complete combat actual combat series article column] (https://juejin.im/collection/5db25bcff265da06a19a304e)
 >
-> [Flutter World Series Article Column] (https://juejin.im/collection/5db25d706fb9a069f422c374)
+> [Flutter World Series Article Column] (https://juejin.im/collection/5db25d706fb9a069f422c374) -->
 
 #### 1. Mixins
 
