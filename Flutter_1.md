@@ -483,13 +483,13 @@ Well, the first part is finally over. The main explanations here are some simple
 
 ### Resource recommendation
 
-* Github: [https://github.com/CarGuo/](https://github.com/CarGuo)
+* Github: [https://github.com/irahulcse/](https://github.com/irahulcse)
 * **Open source Flutter complete project: https://github.com/CarGuo/GSYGithubAppFlutter**
 * **Open source Flutter multi-case learning project: https://github.com/CarGuo/GSYFlutterDemo**
 * **Open source Fluttre combat e-book project: https://github.com/CarGuo/GSYFlutterBook**
 
 ##### Complete open source project recommendation:
 
-* [Related article: GSYGithubAppFlutter] (https://github.com/CarGuo/GSYGithubAppFlutter)
+* [Related article: GeekyAnts Fwlutter Blogs] (https://github.com/CarGuo/GSYGithubAppFlutter)
 
 
