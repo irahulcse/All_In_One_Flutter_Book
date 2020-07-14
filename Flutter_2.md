@@ -23,3 +23,5 @@ In _tabItems, monitor the click of each TabBarItem, and synchronize the state of
 The above code is still missing the TabBarItem click, because this piece is put into the external implementation. Of course, you can also encapsulate the control directly inside, directly pass the configuration data display, this can be encapsulated according to personal needs.
 
 The external calling code is as follows: when each Tabbar is clicked, jump to the page through pageController.jumpTo, each page needs to jump to the coordinates: the current screen size multiplied by the index index.
+
+![Image](assets/flutter_image.jpeg)

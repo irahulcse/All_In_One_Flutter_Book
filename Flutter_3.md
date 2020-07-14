@@ -192,3 +192,4 @@ It can be solved by TabBar + PageView, which can be seen in [Chapter 2] (https:/
 
 
 <!-- ![Will we see you again? ](http://img.cdn.guoshuyu.cn/20190604_Flutter-3/image9) -->
+![Image](assets/flutter_image.jpeg)

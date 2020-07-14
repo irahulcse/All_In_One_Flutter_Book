@@ -141,7 +141,7 @@ testMixins() {
 
 ```
 
-#### 2. WidgetsFlutterBinding
+#### 2. Widgets Flutter Binding
 
 Having said all that, what use is Mixins in Flutter? At this time we have to look at the "glue class" in Flutter: `WidgetsFlutterBinding`.
 
@@ -323,4 +323,4 @@ IOS? As far as I understand, it seems that references such as the dynamic librar
 * [GSYGithubAppWeex](https://github.com/CarGuo/GSYGithubAppWeex)
 * [GSYGithubApp React Native](https://github.com/CarGuo/GSYGithubApp)
 
-<!-- ![Will we see you again? ](http://img.cdn.guoshuyu.cn/20190604_Flutter-5/image12) -->
+![Image](assets/flutter_image.jpeg)
