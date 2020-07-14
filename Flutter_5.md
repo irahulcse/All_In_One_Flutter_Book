@@ -323,4 +323,4 @@ IOS? As far as I understand, it seems that references such as the dynamic librar
 * [GSYGithubAppWeex](https://github.com/CarGuo/GSYGithubAppWeex)
 * [GSYGithubApp React Native](https://github.com/CarGuo/GSYGithubApp)
 
-![Will we see you again? ](http://img.cdn.guoshuyu.cn/20190604_Flutter-5/image12)
+<!-- ![Will we see you again? ](http://img.cdn.guoshuyu.cn/20190604_Flutter-5/image12) -->

@@ -191,4 +191,4 @@ It can be solved by TabBar + PageView, which can be seen in [Chapter 2] (https:/
 * [GSYGithubApp React Native](https://github.com/CarGuo/GSYGithubApp)
 
 
-![Will we see you again? ](http://img.cdn.guoshuyu.cn/20190604_Flutter-3/image9)
+<!-- ![Will we see you again? ](http://img.cdn.guoshuyu.cn/20190604_Flutter-3/image9) -->
